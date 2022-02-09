@@ -1,7 +1,7 @@
 // Initialising the app
 const express = require('express')
 const app = express()
-port = 8080
+const port = 8080
 
 // Middlewares
 const morgan = require('morgan')
@@ -11,9 +11,9 @@ app.use(morgan('dev'))
 
 // Routes
 const public = require('./routes/public/public.js')
-app.use('/', public)
+app.use('/api/v1', public)
 
 // Server
 app.listen(port, () => {
-  console.log("Server is running on port ${port}")
+  console.log(`Server is running on port ${port}`)
 })
