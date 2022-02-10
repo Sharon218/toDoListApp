@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 
 // Routes
 const public = require("./routes/public/public.js");
-app.use("/api/v1", public);
+app.use("/api/v1/tasks", public);
 
 // starting the server
 const start = async () => {
