@@ -1,7 +1,6 @@
 // Initialising the app
 const express = require("express");
 const app = express();
-const port = 8080;
 const connectDB = require("./db/connect");
 require("dotenv").config();
 
@@ -15,8 +14,13 @@ app.use(morgan("dev"));
 // Routes
 const public = require("./routes/public/public.js");
 app.use("/api/v1/tasks", public);
+const routeNotFound = require("./middlewares/not-found");
+app.use(routeNotFound);
+const errorHandlerMiddleware = require("./middlewares/error-handler");
+app.use(errorHandlerMiddleware);
 
 // starting the server
+const port = process.env.PORT || 3000;
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
